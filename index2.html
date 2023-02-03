@@ -1,0 +1,118 @@
+<html>
+  <head>
+    <title>Sample Quiz App</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      h1 {
+        text-align: center;
+        margin-top: 50px;
+      }
+
+      .question-container {
+        background-color: lightgray;
+        padding: 20px;
+        margin: 50px 0;
+        border-radius: 10px;
+      }
+
+      .question {
+        text-align: left;
+        margin-bottom: 20px;
+      }
+
+      .answer-options {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .answer-options input[type="radio"] {
+        margin-right: 10px;
+      }
+
+      #quiz-form {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: left;
+      }
+
+      button[type="submit"] {
+        background-color: green;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin-top: 50px;
+        display: block;
+        margin: 0 auto;
+      }
+
+      #result {
+        margin-top: 50px;
+        text-align: center;
+        background-color: lightgray;
+        padding: 20px;
+        border-radius: 10px;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Sample Quiz App</h1>
+    <form id="quiz-form">
+      <div class="question-container">
+        <p class="question">Question 1: Who Programmed this Quiz App?</p>
+          <input type="radio" name="question-1" value="1"> Haruna<br>
+          <input type="radio" name="question-1" value="0"> Hamidu<br>
+          <input type="radio" name="question-1" value="0"> Kwairanga<br>
+        </div>
+      </div>
+      <div class="question-container">
+        <p>Question 2: Who is the CEO of Apple?</p>
+        <input type="radio" name="question-2" value="0"> Mark Zuckerberg<br>
+        <input type="radio" name="question-2" value="1"> Tim Cook<br>
+        <input type="radio" name="question-2" value="0"> Satya Nadella<br>
+      </div>
+      <div class="question-container">
+        <p>Question 3: Who is the CEO of Facebook?</p>
+        <input type="radio" name="question-3" value="0"> Tim Cook<br>
+        <input type="radio" name="question-3" value="1"> Mark Zuckerberg<br>
+        <input type="radio" name="question-3" value="0"> Satya Nadella<br>
+      </div>
+      <div class="question-container">
+        <p>Question 3: Who is the Current CEO of Twitter?</p>
+        <input type="radio" name="question-4" value="1"> Elon Musk<br>
+        <input type="radio" name="question-4" value="0"> Jeff Bezos<br>
+        <input type="radio" name="question-4" value="0"> Jack Dorsey<br>
+      </div>
+      <!-- Add more questions here -->
+      <button type="submit">Submit</button>
+    </form>
+    <div id="result" style="display:none;">
+      <h2> Your Total Score is: <span id="score"></span></h2>
+    </div>
+    <script>
+      const quizForm = document.getElementById("quiz-form");
+      const result = document.getElementById("result");
+      const score = document.getElementById("score");
+
+      quizForm.addEventListener("submit", event => {
+        event.preventDefault();
+
+        let totalScore = 0;
+        const questions = quizForm.elements;
+        for (let i = 0; i < questions.length; i++) {
+          if (questions[i].type === "radio" && questions[i].checked) {
+            totalScore += parseInt(questions[i].value);
+          }
+        }
+
+        result.style.display = "block";
+        score.innerHTML = totalScore;
+      });
+    </script>
+  </body>
+</html>
